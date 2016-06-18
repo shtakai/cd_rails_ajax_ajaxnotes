@@ -1,2 +1,21 @@
-<h1>Notes#index</h1>
-<p>Find me in app/views/notes/index.html.erb</p>
+<div class="container">
+  <% @notes.each do |note| %>
+    <div class="well">
+      <%= note.id %>
+      <%= note.title %>
+      <%= note.description %>
+      <form action="/notes/<%= note.id %>" method="POST" id="note-<%= note.id %>">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <textarea name="description" cols="30" rows="10" disabled><%= note.description %></textarea>
+        <input type="submit" value="Edit" class="submit">
+      </form>
+    </div>
+  <% end %>
+</div>
+<div class="container">
+  <%= simple_form_for(@note, html: { class: 'form-horizontal' }) do |f| %>
+    <%= f.input :title, placeholder: 'Insert note title here..'  %>
+    <%= f.submit 'Add Note' %>
+  <% end %>
+
+</div>
