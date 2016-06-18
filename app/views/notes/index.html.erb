@@ -1,13 +1,19 @@
 <div class="container">
   <% @notes.each do |note| %>
-    <div class="well">
+    <div class="well" id="note-<%= note.id %>">
       <%= note.id %>
       <%= note.title %>
       <%= note.description %>
-      <form action="/notes/<%= note.id %>" method="POST" id="note-<%= note.id %>">
+      <form action="/notes/<%= note.id %>" method="POST">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <textarea name="description" cols="30" rows="10" disabled><%= note.description %></textarea>
+        <input type="hidden" name="_method" value="PATCH">
+        <textarea name="description" cols="30" rows="10" readonly><%= note.description %></textarea>
         <input type="submit" value="Edit" class="submit">
+      </form>
+      <form action="/notes/<%= note.id %>" method="POST">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
       </form>
     </div>
   <% end %>

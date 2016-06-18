@@ -7,10 +7,10 @@ $ ->
   $('form').click ->
     console.log(@.id)
     $(@).children('.submit').toggle()
-    if($(@).children('textarea').attr('disabled'))
-      $(@).children('textarea').removeAttr('disabled')
+    if($(@).children('textarea').attr('readonly'))
+      $(@).children('textarea').removeAttr('readonly')
     else
-      $(@).children('textarea').attr('disabled','')
+      $(@).children('textarea').attr('readonly','')
 
 
 
