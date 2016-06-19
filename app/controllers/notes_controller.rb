@@ -21,7 +21,9 @@ class NotesController < ApplicationController
   def update
     @note = Note.find_by_id(params[:id])
     @note.update(description: params[:description])
-    redirect_to '/notes/index'
+    #redirect_to '/notes/index'
+    logger.debug @note.to_json
+    render json: @note.to_json
   end
 
   def destroy

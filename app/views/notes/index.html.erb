@@ -1,13 +1,12 @@
 <div class="container">
   <% @notes.each do |note| %>
     <div class="well" id="note-<%= note.id %>">
-      <%= note.id %>
       <div class="title">
         <%= note.title %>
       </div>
       <form action="/notes/<%= note.id %>" method="POST">
       </form>
-      <%= form_tag "/notes/#{note.id}", method: :PATCH, remote: true do%>
+      <%= form_tag "/notes/#{note.id}", method: :PATCH, remote: true, class: 'update' do%>
         <textarea name="description" cols="30" rows="10" readonly class="description"><%= note.description %></textarea>
         <input type="submit" value="Edit" class="submit">
       <% end %>

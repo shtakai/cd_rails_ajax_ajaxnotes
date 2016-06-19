@@ -5,7 +5,6 @@ $ ->
   $('.submit').toggle()
 
   $('form').click ->
-    console.log(@.id)
     $(@).children('.submit').toggle()
     if($(@).children('textarea').attr('readonly'))
       $(@).children('textarea').removeAttr('readonly')
@@ -19,6 +18,10 @@ $ ->
     $('#'+target_id).remove()
   )
 
+  $('form.update').on('ajax:success', (e, data, status) ->
+    target_id = '#note-' + data.id
+    $(target_id+'>.description').text = data.description
+  )
 
 
 
