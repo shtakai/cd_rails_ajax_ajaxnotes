@@ -12,7 +12,8 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to '/notes/index'
+      #redirect_to '/notes/index'
+      render json: @note.to_json
     else
       render text: 'failed creation note'
     end

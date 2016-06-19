@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="note_list">
   <% @notes.each do |note| %>
     <div class="well" id="note-<%= note.id %>">
       <div class="title">
@@ -17,8 +17,8 @@
   <% end %>
 </div>
 <div class="container">
-  <%= simple_form_for(@note, html: { class: 'form-horizontal' }) do |f| %>
-    <%= f.input :title, placeholder: 'Insert note title here..'  %>
+  <%= simple_form_for(@note, html: { class: 'form-horizontal' }, remote: true) do |f| %>
+    <%= f.input :title, placeholder: 'Insert note title here..' %>
     <%= f.submit 'Add Note' %>
   <% end %>
 
