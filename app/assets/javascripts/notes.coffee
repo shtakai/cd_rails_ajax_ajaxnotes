@@ -12,6 +12,13 @@ $ ->
     else
       $(@).children('textarea').attr('readonly','')
 
+  $('form').on('ajax:success', (e, data, status) ->
+    console.log(data)
+    target_id = data.delete
+    console.log(target_id)
+    $('#'+target_id).remove()
+  )
+
 
 
 

@@ -27,7 +27,10 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.find_by_id(params[:id])
     @note.destroy
-    redirect_to '/notes/index'
+    #redirect_to '/notes/index'
+    render json: {
+      delete: "note-#{@note.id}"
+    }
   end
 
   private
