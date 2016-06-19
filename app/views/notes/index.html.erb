@@ -6,12 +6,12 @@
         <%= note.title %>
       </div>
       <form action="/notes/<%= note.id %>" method="POST">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="hidden" name="_method" value="PATCH">
+      </form>
+      <%= form_tag "/notes/#{note.id}", method: :PATCH, remote: true do%>
         <textarea name="description" cols="30" rows="10" readonly class="description"><%= note.description %></textarea>
         <input type="submit" value="Edit" class="submit">
-      </form>
-      <%= form_tag "/notes/#{note.id}", method: :DELETE, remote: true do%>
+      <% end %>
+      <%= form_tag "/notes/#{note.id}", method: :DELETE, remote: true, class: 'destroy' do%>
         <input type="submit" value="Delete">
       <% end %>
     </div>
